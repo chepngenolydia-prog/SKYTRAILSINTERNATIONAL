@@ -45,7 +45,7 @@ const Navbar = () => {
   ];
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white/90 backdrop-blur-md border-b border-navy-100 py-3" : "bg-transparent py-5"}`}>
+    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-[#ebf0e6]/90 backdrop-blur-md border-b border-navy-100 py-3" : "bg-transparent py-5"}`}>
       <nav className="max-w-7xl mx-auto px-6 flex justify-between items-center text-navy-900">
         <div className="flex items-center gap-2">
           <img src={logoUrl} alt="Skytrails Logo" className="w-8 h-8 rounded-lg object-cover" />
@@ -86,7 +86,7 @@ const Navbar = () => {
             initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
-            className="fixed inset-0 bg-white z-[60] p-6 flex flex-col"
+            className="fixed inset-0 bg-[#ebf0e6] z-[60] p-6 flex flex-col"
           >
             <div className="flex justify-between items-center mb-12">
               <div className="flex items-center gap-2">
@@ -270,7 +270,7 @@ const Hero = () => {
   const [showVideo, setShowVideo] = useState(false);
 
   return (
-    <section className="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden bg-white">
+    <section className="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden bg-[#ebf0e6]">
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center">
         <motion.div 
           className="lg:col-span-7 flex flex-col gap-6"
@@ -387,21 +387,21 @@ const ProblemSolution = () => {
   ];
 
   return (
-    <section className="py-32 bg-white border-y border-navy-100" id="problem">
+    <section className="py-32 bg-[#f3f7f0] border-y border-navy-100" id="problem">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           <div className="space-y-10">
-            <div className="label-mini !bg-red-50 !text-red-600">The Problem</div>
+            <div className="label-mini !bg-amber-50 !text-amber-600">The Problem</div>
             <h2 className="text-5xl md:text-6xl font-display font-semibold tracking-normal text-navy-950 leading-[1.05]">
-              TRAVEL PLANNING IS <span className="text-red-500 underline decoration-4 underline-offset-8">OVERWHELMING.</span>
+              TRAVEL PLANNING IS <span className="text-amber-500 underline decoration-4 underline-offset-8">OVERWHELMING.</span>
             </h2>
             <p className="text-navy-600/80 text-xl font-medium leading-relaxed italic">
               "Most people waste time, money, and opportunities trying to figure it out alone."
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               {problems.map((p, i) => (
-                <div key={i} className="flex items-start gap-4 p-5 rounded-2xl bg-white border border-navy-100 group hover:border-red-500/20 transition-all">
-                  <div className="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center text-red-500 group-hover:bg-red-500 group-hover:text-white transition-all shrink-0">
+                <div key={i} className="flex items-start gap-4 p-5 rounded-2xl bg-white border border-navy-100 group hover:border-amber-500/20 transition-all">
+                  <div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center text-amber-500 group-hover:bg-amber-500 group-hover:text-white transition-all shrink-0">
                     <X className="w-4 h-4" />
                   </div>
                   <span className="text-navy-800 font-bold text-sm tracking-tight">{p}</span>
@@ -466,7 +466,7 @@ const ServicesGrid = () => {
   ];
 
   return (
-    <section id="services" className="py-32 bg-white">
+    <section id="services" className="py-32 bg-[#ebf0e6]">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <div className="label-mini mb-6">Our Services</div>
         <h2 className="text-5xl md:text-7xl font-display font-semibold mb-16 text-navy-950 tracking-normal italic uppercase tracking-wider text-xs">What We <span className="text-gold-500">Do Best</span></h2>
@@ -526,7 +526,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-32 bg-white border-t border-navy-100">
+    <section className="py-32 bg-[#f3f7f0] border-t border-navy-100">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12">
           {reviews.map((r, i) => (
@@ -569,7 +569,7 @@ const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-32 bg-white">
+    <section id="faq" className="py-32 bg-[#ebf0e6]">
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-20">
           <div className="label-mini !bg-navy-100 !text-navy-800 mb-6">Support</div>
@@ -610,9 +610,9 @@ const FAQSection = () => {
 
 const FinalCTA = () => {
   return (
-    <section className="py-40 bg-white relative overflow-hidden text-center">
-      <div className="absolute inset-0 bg-white pointer-events-none"></div>
-      <div className="absolute top-0 left-0 w-full h-1/2 bg-white skew-y-1"></div>
+    <section className="py-40 bg-[#f3f7f0] relative overflow-hidden text-center">
+      <div className="absolute inset-0 bg-[#dce6d5] pointer-events-none"></div>
+      <div className="absolute top-0 left-0 w-full h-1/2 bg-[#f3f7f0] skew-y-1"></div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         <div className="label-mini mb-10 !text-sm px-6 py-2">Limited Slots Available</div>
