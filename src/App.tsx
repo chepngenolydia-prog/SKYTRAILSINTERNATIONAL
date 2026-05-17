@@ -364,7 +364,7 @@ const Hero = () => {
             >
               <iframe 
                 className="w-full h-full" 
-                src="https://www.youtube.com/embed/4W61GqRttNY?autoplay=1" 
+                src="https://www.youtube.com/embed/P8frC_cLLD4?autoplay=1&mute=1" 
                 title="Skytrails Safari Video" 
                 frameBorder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
