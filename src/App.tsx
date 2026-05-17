@@ -422,7 +422,7 @@ const ProblemSolution = () => {
             </div>
             <h2 className="text-5xl font-display font-semibold text-white leading-tight tracking-normal">WE SIMPLIFY <span className="text-gold-500">EVERYTHING.</span></h2>
             <p className="text-white text-xl font-medium leading-relaxed">
-              At Skytrails International Limited, we guide you step-by-step through visa applications and create seamless safari experiences tailored to you.
+              At Skytrails International Kenya, we guide you step-by-step through visa applications and create seamless safari experiences tailored to you.
             </p>
             <div className="space-y-4">
               <div className="flex items-center gap-4 text-white font-semibold uppercase tracking-widest text-xs text-xs py-3 px-6 rounded-xl bg-white/5 border border-white/10 w-fit">
@@ -663,7 +663,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
           <div className="flex items-center gap-3">
             <img src={logoUrl} alt="Skytrails Logo" className="w-10 h-10 rounded-xl object-cover" />
-            <span className="font-display font-semibold text-2xl tracking-normal italic">Skytrails International</span>
+            <span className="font-display font-semibold text-2xl tracking-normal italic">Skytrails International Kenya</span>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-10 text-[10px] font-semibold uppercase tracking-widest text-xs text-navy-200">
             <span className="text-white/80">📍 Nairobi, Kenya</span>
@@ -673,7 +673,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="pt-8 border-t border-navy-800 flex flex-col md:flex-row justify-between items-center gap-4 text-navy-400 text-[10px] font-semibold uppercase tracking-widest text-xs">
-          <p>© 2026 Skytrails International Limited. All Rights Reserved.</p>
+          <p>© 2026 Skytrails International Kenya. All Rights Reserved.</p>
           <div className="flex gap-4">
             <Instagram className="w-4 h-4" />
             <Facebook className="w-4 h-4" />
