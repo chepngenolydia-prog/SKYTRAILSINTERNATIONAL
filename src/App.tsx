@@ -23,6 +23,7 @@ import {
   Send
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import logoUrl from "./assets/images/skytrails_logo_1779017357014.png";
 
 // --- Components ---
 
@@ -46,7 +47,7 @@ const Navbar = () => {
     <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white/90 backdrop-blur-md border-b border-navy-100 py-3" : "bg-transparent py-5"}`}>
       <nav className="max-w-7xl mx-auto px-6 flex justify-between items-center text-navy-900">
         <div className="flex items-center gap-2">
-          <img src="/src/assets/images/skytrails_logo_1779017357014.png" alt="Skytrails Logo" className="w-8 h-8 rounded-lg object-cover" />
+          <img src={logoUrl} alt="Skytrails Logo" className="w-8 h-8 rounded-lg object-cover" />
           <span className="font-display font-semibold text-xl tracking-tight italic">Skytrails</span>
         </div>
 
@@ -88,7 +89,7 @@ const Navbar = () => {
           >
             <div className="flex justify-between items-center mb-12">
               <div className="flex items-center gap-2">
-                <img src="/src/assets/images/skytrails_logo_1779017357014.png" alt="Skytrails Logo" className="w-8 h-8 rounded-lg object-cover" />
+                <img src={logoUrl} alt="Skytrails Logo" className="w-8 h-8 rounded-lg object-cover" />
                 <span className="font-display font-semibold text-lg italic text-navy-900">Skytrails</span>
               </div>
               <button className="text-navy-900" onClick={() => setMobileMenuOpen(false)}>
@@ -660,7 +661,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
           <div className="flex items-center gap-3">
-            <img src="/src/assets/images/skytrails_logo_1779017357014.png" alt="Skytrails Logo" className="w-10 h-10 rounded-xl object-cover" />
+            <img src={logoUrl} alt="Skytrails Logo" className="w-10 h-10 rounded-xl object-cover" />
             <span className="font-display font-semibold text-2xl tracking-normal italic">Skytrails International</span>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-10 text-[10px] font-semibold uppercase tracking-widest text-xs text-navy-200">
