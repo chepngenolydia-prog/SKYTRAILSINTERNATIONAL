@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import logoUrl from "./assets/images/skytrails_logo_1779017357014.png";
+import safariHeroUrl from "./assets/images/safari_hero_1779016444553.png";
 
 // --- Components ---
 
@@ -317,7 +318,7 @@ const Hero = () => {
         >
           <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white group cursor-pointer" onClick={() => setShowVideo(true)}>
             <img 
-              src="/src/assets/images/safari_hero_1779016444553.png" 
+              src={safariHeroUrl} 
               alt="Kenyan Safari" 
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
               referrerPolicy="no-referrer"
