@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", serif;
+  
+  --color-navy-50: #F4F6F8;
+  --color-navy-100: #E4E8EE;
+  --color-navy-200: #C4CEDC;
+  --color-navy-300: #9BAEC8;
+  --color-navy-400: #718BAD;
+  --color-navy-500: #516C91;
+  --color-navy-600: #3E5474;
+  --color-navy-700: #33445F;
+  --color-navy-800: #1B263B;
+  --color-navy-900: #0D1B2A;
+  --color-navy-950: #08111A;
+
+  --color-gold-50: #FDFBEE;
+  --color-gold-100: #FAF5D4;
+  --color-gold-200: #F4E8A3;
+  --color-gold-300: #EED76A;
+  --color-gold-400: #D8B744;
+  --color-gold-500: #C5A031;
+  --color-gold-600: #A88223;
+  --color-gold-700: #85611E;
+  --color-gold-800: #6B4D1E;
+  --color-gold-900: #5A401C;
+  --color-gold-950: #34220B;
+}
+
+@layer base {
+  body {
+    @apply bg-navy-50 text-navy-900 font-sans;
+  }
+}
+
+.bold-card {
+  @apply bg-white p-8 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-navy-100;
+}
+
+.label-mini {
+  @apply inline-flex items-center gap-2 bg-gold-50 text-gold-700 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border border-gold-200/50;
+}
