@@ -668,25 +668,25 @@ const ContactSection = () => {
           <div className="bg-[#1a3626] p-8 md:p-10 rounded-2xl text-white shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
             <h3 className="text-2xl font-display font-bold mb-6">Send Us a Message</h3>
-            <form className="space-y-4 relative z-10" onSubmit={(e) => { e.preventDefault(); alert("Message sent successfully! We will get back to you shortly."); }}>
+            <form className="space-y-4 relative z-10" action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-widest text-white/70 mb-2">First Name</label>
-                  <input type="text" className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-[#d48217] transition-colors" required />
+                  <input type="text" name="First Name" className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-[#d48217] transition-colors" required />
                 </div>
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-widest text-white/70 mb-2">Last Name</label>
-                  <input type="text" className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-[#d48217] transition-colors" required />
+                  <input type="text" name="Last Name" className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-[#d48217] transition-colors" required />
                 </div>
               </div>
               <div>
                 <label className="block text-xs font-bold uppercase tracking-widest text-white/70 mb-2">Email Address</label>
-                <input type="email" className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-[#d48217] transition-colors" required />
+                <input type="email" name="Email" className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-[#d48217] transition-colors" required />
               </div>
               <div>
                 <label className="block text-xs font-bold uppercase tracking-widest text-white/70 mb-2">Service Required</label>
-                <select className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-[#d48217] transition-colors [&>option]:text-[#1a3626]" required>
-                  <option value="" disabled selected>Select a Service</option>
+                <select name="Service Required" className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-[#d48217] transition-colors [&>option]:text-[#1a3626]" required defaultValue="">
+                  <option value="" disabled>Select a Service</option>
                   <option value="safari">Safari Package</option>
                   <option value="visa">Visa Assistance</option>
                   <option value="flight">Flight Booking</option>
@@ -695,7 +695,7 @@ const ContactSection = () => {
               </div>
               <div>
                 <label className="block text-xs font-bold uppercase tracking-widest text-white/70 mb-2">Your Message</label>
-                <textarea rows={4} className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-[#d48217] transition-colors resize-none" required></textarea>
+                <textarea name="Message" rows={4} className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-[#d48217] transition-colors resize-none" required></textarea>
               </div>
               <button type="submit" className="w-full bg-[#d48217] hover:bg-[#b56e13] text-white py-4 rounded-lg font-bold uppercase tracking-widest transition-colors mt-4">
                 Submit Inquiry
