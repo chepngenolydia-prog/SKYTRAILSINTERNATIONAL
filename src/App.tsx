@@ -307,10 +307,10 @@ const AboutUs = () => {
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center md:mt-16">
         <div className="relative">
           <div className="aspect-[4/5] rounded-t-full overflow-hidden border-8 border-white shadow-xl relative z-10">
-            <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80" alt="Safari Experience" className="w-full h-full object-cover" />
+            <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80" referrerPolicy="no-referrer" alt="Safari Experience" className="w-full h-full object-cover" />
           </div>
           <div className="absolute -bottom-10 -right-10 w-2/3 aspect-square rounded-full border-[10px] border-[#fdfaf6] overflow-hidden shadow-xl z-20 hidden md:block">
-            <img src="https://images.unsplash.com/photo-1547471080-7fc2caa6f17f?auto=format&fit=crop&q=80" alt="Visa Assistance" className="w-full h-full object-cover" />
+            <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&q=80" referrerPolicy="no-referrer" alt="Visa Assistance" className="w-full h-full object-cover" />
           </div>
           <div className="absolute top-10 -left-10 w-32 h-32 bg-[#d48217]/10 rounded-full blur-2xl z-0"></div>
         </div>
@@ -397,7 +397,7 @@ const ComprehensiveServices = () => {
   return (
     <section id="services" className="py-24 bg-[#1a3626] relative overflow-hidden">
       <div className="absolute inset-0 opacity-10">
-        <img src="https://images.unsplash.com/photo-1544463878-c84cb1c37b80?auto=format&fit=crop&q=80" alt="Map pattern" className="w-full h-full object-cover" />
+        <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80" referrerPolicy="no-referrer" alt="Map pattern" className="w-full h-full object-cover" />
       </div>
       <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
         <div className="flex items-center justify-center gap-3 mb-4">
@@ -572,7 +572,7 @@ const VisaServices = () => {
   return (
     <section id="visa" className="py-24 bg-[#fdfaf6] text-[#1a3626] relative overflow-hidden">
       <div className="absolute inset-0 opacity-5">
-        <img src="https://images.unsplash.com/photo-1544463878-c84cb1c37b80?auto=format&fit=crop&q=80" alt="Map pattern" className="w-full h-full object-cover" />
+        <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80" referrerPolicy="no-referrer" alt="Map pattern" className="w-full h-full object-cover" />
       </div>
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -603,8 +603,8 @@ const VisaServices = () => {
           </div>
           <div className="relative">
             <div className="grid grid-cols-2 gap-4">
-              <img src="https://images.unsplash.com/photo-1554160359-58b29f0efcd9?auto=format&fit=crop&q=80" alt="Passport and tickets" className="rounded-2xl shadow-lg w-full h-64 object-cover mt-12" />
-              <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80" alt="Airplane tail" className="rounded-2xl shadow-lg w-full h-64 object-cover" />
+              <img src="https://images.unsplash.com/photo-1578894381163-e72c17f2d45f?auto=format&fit=crop&q=80" referrerPolicy="no-referrer" alt="Passport and tickets" className="rounded-2xl shadow-lg w-full h-64 object-cover mt-12" />
+              <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80" referrerPolicy="no-referrer" alt="Airplane tail" className="rounded-2xl shadow-lg w-full h-64 object-cover" />
             </div>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-2xl shadow-2xl text-center border-4 border-[#fdfaf6]">
               <div className="text-4xl font-display font-bold text-[#d48217] mb-1">98%</div>
