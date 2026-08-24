@@ -8,25 +8,49 @@ import {
   Menu, 
   X, 
   ChevronRight, 
-  CheckCircle2, 
-  AlertCircle,
+  ChevronDown,
+  Phone,
+  Mail,
+  MapPin,
+  Calendar,
   Instagram,
   Facebook,
   Twitter,
-  ChevronDown,
+  Search,
+  Star,
   Quote,
-  ArrowRight,
-  Phone,
-  Mail,
-  Play,
   MessageSquare,
-  Send
+  ArrowRight,
+  CheckCircle2,
+  Briefcase,
+  Sun
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import logoUrl from "./assets/images/skytrails_logo_1779017357014.png";
 import safariHeroUrl from "./assets/images/safari_hero_1779016444553.png";
 
-// --- Components ---
+// --- Theme Colors ---
+// Primary: #1a3626 (Deep Forest Green)
+// Secondary: #d48217 (Sunset Orange/Gold)
+// Light: #fdfaf6 (Warm White)
+
+const TopBar = () => (
+  <div className="hidden md:flex justify-between items-center px-6 py-2 bg-[#1a3626] text-white/80 text-xs font-medium tracking-wide">
+    <div className="flex gap-6">
+      <span className="flex items-center gap-2"><Phone className="w-3 h-3 text-[#d48217]"/> +254 734 365 511</span>
+      <span className="flex items-center gap-2"><Mail className="w-3 h-3 text-[#d48217]"/> info@skytrailsinternational.com</span>
+    </div>
+    <div className="flex gap-4 items-center">
+      <span className="flex items-center gap-2"><MapPin className="w-3 h-3 text-[#d48217]"/> Nairobi, Kenya</span>
+      <div className="w-px h-4 bg-white/20"></div>
+      <div className="flex gap-3">
+        <Facebook className="w-4 h-4 hover:text-[#d48217] cursor-pointer transition-colors" />
+        <Instagram className="w-4 h-4 hover:text-[#d48217] cursor-pointer transition-colors" />
+        <Twitter className="w-4 h-4 hover:text-[#d48217] cursor-pointer transition-colors" />
+      </div>
+    </div>
+  </div>
+);
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -39,478 +63,360 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "Services", href: "#services" },
-    { name: "How It Works", href: "#how-it-works" },
-    { name: "FAQ", href: "#faq" },
+    { name: "Home", href: "#" },
+    { name: "About Us", href: "#about" },
+    { name: "Destinations", href: "#booking-widget" },
+    { name: "Safari Packages", href: "#packages" },
+    { name: "Visa Assistance", href: "#visa" },
+    { name: "Contact", href: "#contact" },
   ];
 
   return (
-    <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-[#ebf0e6]/90 backdrop-blur-md border-b border-navy-100 py-3" : "bg-transparent py-5"}`}>
-      <nav className="max-w-7xl mx-auto px-6 flex justify-between items-center text-navy-900">
-        <div className="flex items-center gap-2">
-          <img src={logoUrl} alt="Skytrails Logo" className="w-8 h-8 rounded-lg object-cover" />
-          <span className="font-display font-semibold text-xl tracking-tight italic">Skytrails</span>
-        </div>
-
-        {/* Desktop Links */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href} 
-              className="text-sm font-bold text-navy-800 hover:text-gold-500 transition-colors uppercase tracking-wider text-xs"
-            >
-              {link.name}
-            </a>
-          ))}
-          <a 
-            href="https://wa.me/254734365511" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-navy-950 hover:bg-gold-500 text-white px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-widest text-xs transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-navy-950/20"
-          >
-            Book Consultation
-          </a>
-        </div>
-
-        {/* Mobile Toggle */}
-        <button className="md:hidden text-navy-900" onClick={() => setMobileMenuOpen(true)}>
-          <Menu className="w-6 h-6" />
-        </button>
-      </nav>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            className="fixed inset-0 bg-[#ebf0e6] z-[60] p-6 flex flex-col"
-          >
-            <div className="flex justify-between items-center mb-12">
-              <div className="flex items-center gap-2">
-                <img src={logoUrl} alt="Skytrails Logo" className="w-8 h-8 rounded-lg object-cover" />
-                <span className="font-display font-semibold text-lg italic text-navy-900">Skytrails</span>
-              </div>
-              <button className="text-navy-900" onClick={() => setMobileMenuOpen(false)}>
-                <X className="w-8 h-8" />
-              </button>
-            </div>
-            <div className="flex flex-col gap-8 items-center">
-              {navLinks.map((link) => (
-                <a 
-                  key={link.name} 
-                  href={link.href} 
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-3xl font-display font-semibold text-navy-900 uppercase tracking-widest text-sm"
-                >
-                  {link.name}
-                </a>
-              ))}
-              <a 
-                href="https://wa.me/254734365511"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full text-center bg-gold-500 text-white py-4 rounded-xl font-semibold text-xl uppercase tracking-widest text-xs"
-              >
-                Book Your Spot Today
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </header>
-  );
-};
-
-const ChatWidget = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [step, setStep] = useState<'options' | 'message'>('options');
-
-  return (
-    <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end">
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="mb-4 w-[350px] bg-white rounded-3xl shadow-3xl border border-navy-100 overflow-hidden"
-          >
-            {/* Header */}
-            <div className="bg-navy-950 p-6 text-white flex justify-between items-center">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gold-500 flex items-center justify-center">
-                  <Plane className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-sm font-semibold uppercase tracking-widest text-xs">Skytrails Support</div>
-                  <div className="text-[10px] text-gold-500 font-bold uppercase tracking-widest text-xs flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-gold-500 animate-pulse"></span>
-                    Online
-                  </div>
-                </div>
-              </div>
-              <button 
-                onClick={() => setIsOpen(false)}
-                className="text-white hover:text-gold-500 transition-colors"
-              >
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-
-            {/* Content */}
-            <div className="p-6">
-              {step === 'options' ? (
-                <div className="space-y-4">
-                  <div className="bg-white p-4 rounded-2xl text-navy-800 text-sm font-medium leading-relaxed">
-                    👋 Hi there! Planning a trip or safari? We're here to help you make it stress-free.
-                  </div>
-                  <div className="grid gap-3">
-                    <button 
-                      onClick={() => window.open("https://wa.me/254734365511", "_blank")}
-                      className="w-full flex items-center justify-between p-4 rounded-2xl bg-white border border-navy-100 hover:border-gold-500 hover:bg-gold-50/50 transition-all text-left group"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-gold-100 text-gold-500 flex items-center justify-center shrink-0">
-                          <MessageSquare className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <div className="font-semibold text-xs uppercase tracking-wider text-xs text-navy-900">Live Chat</div>
-                          <div className="text-[10px] text-navy-600/60 font-bold uppercase tracking-wider text-xs">Talk to a Representative</div>
-                        </div>
-                      </div>
-                      <ChevronRight className="w-4 h-4 text-navy-200 group-hover:text-gold-500 transition-colors" />
-                    </button>
-
-                    <button 
-                      onClick={() => setStep('message')}
-                      className="w-full flex items-center justify-between p-4 rounded-2xl bg-white border border-navy-100 hover:border-gold-500 hover:bg-gold-50/50 transition-all text-left group"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-navy-50 text-navy-600/80 flex items-center justify-center shrink-0">
-                          <Mail className="w-5 h-5" />
-                        </div>
-                        <div>
-                          <div className="font-semibold text-xs uppercase tracking-wider text-xs text-navy-900">Leave a Message</div>
-                          <div className="text-[10px] text-navy-600/60 font-bold uppercase tracking-wider text-xs">We'll email you back</div>
-                        </div>
-                      </div>
-                      <ChevronRight className="w-4 h-4 text-navy-200 group-hover:text-gold-500 transition-colors" />
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <div className="space-y-4">
-                  <button 
-                    onClick={() => setStep('options')}
-                    className="text-[10px] font-semibold uppercase tracking-wider text-xs text-navy-600/60 hover:text-gold-500 flex items-center gap-1 mb-2"
-                  >
-                    <ChevronRight className="w-3 h-3 rotate-180" /> Back
-                  </button>
-                  <div className="space-y-3 font-display">
-                    <input 
-                      type="text" 
-                      placeholder="Your Name" 
-                      className="w-full p-4 rounded-xl bg-white border border-navy-100 text-sm font-bold focus:outline-none focus:border-gold-500"
-                    />
-                    <textarea 
-                      placeholder="How can we help with your Visa or Safari?" 
-                      rows={3}
-                      className="w-full p-4 rounded-xl bg-white border border-navy-100 text-sm font-bold focus:outline-none focus:border-gold-500 resize-none"
-                    ></textarea>
-                    <button className="w-full bg-navy-950 text-white py-4 rounded-xl font-semibold text-xs uppercase tracking-widest text-xs flex items-center justify-center gap-2 hover:bg-gold-500 transition-all">
-                      Send Message
-                      <Send className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-16 h-16 rounded-full bg-gold-500 text-white shadow-3xl hover:scale-110 transition-transform active:scale-95 flex items-center justify-center group"
-      >
-        <AnimatePresence mode="wait">
-          {isOpen ? (
-            <motion.div
-              key="close"
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-            >
-              <X className="w-8 h-8" />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="chat"
-              initial={{ rotate: 90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
-            >
-              <MessageSquare className="w-8 h-8" />
-            </motion.div>
-          )}
-        </AnimatePresence>
-        <span className="absolute -top-1 -right-1 w-5 h-5 bg-navy-950 rounded-full border-2 border-white flex items-center justify-center animate-bounce text-[10px] font-semibold italic">
-          !
-        </span>
-      </button>
-    </div>
-  );
-};
-
-const Hero = () => {
-  const [showVideo, setShowVideo] = useState(false);
-
-  return (
-    <section className="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden bg-[#ebf0e6]">
-      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center">
-        <motion.div 
-          className="lg:col-span-7 flex flex-col gap-6"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <div className="flex flex-wrap gap-3 items-center">
-            <div className="label-mini w-fit text-[10px]">
-              <span>🌍 International Travel Experts</span>
-            </div>
-            <div className="label-mini w-fit text-[10px] bg-navy-50 text-navy-600 border-navy-100">
-              <span>📍 Nairobi, Kenya</span>
+    <>
+      <TopBar />
+      <header className={`sticky top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md py-3" : "bg-white/95 py-5"}`}>
+        <nav className="max-w-7xl mx-auto px-6 flex justify-between items-center text-[#1a3626]">
+          <div className="flex items-center gap-3">
+            <img src={logoUrl} alt="Skytrails Logo" className="w-10 h-10 rounded-md object-cover" />
+            <div className="flex flex-col">
+              <span className="font-display font-bold text-xl leading-none uppercase tracking-wider text-[#1a3626]">Skytrails</span>
+              <span className="text-[10px] uppercase tracking-widest text-[#d48217] font-semibold">International Kenya</span>
             </div>
           </div>
-          <h1 className="text-6xl md:text-8xl font-display font-semibold leading-[0.95] tracking-normal text-navy-950">
-            TURN DREAMS INTO <br />
-            <span className="text-gold-500 italic">REALITY.</span>
-          </h1>
-          <p className="text-navy-800 text-xl leading-relaxed max-w-xl font-medium">
-            From unforgettable Kenyan safaris to successful visa applications and global flight ticketing—we handle the hard part while you focus on the journey.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
+
+          {/* Desktop Links */}
+          <div className="hidden lg:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a 
+                key={link.name} 
+                href={link.href} 
+                className="text-sm font-semibold text-[#1a3626] hover:text-[#d48217] transition-colors uppercase tracking-wider"
+              >
+                {link.name}
+              </a>
+            ))}
             <a 
               href="https://wa.me/254734365511" 
               target="_blank"
               rel="noopener noreferrer"
-              className="group bg-gold-500 hover:bg-gold-600 text-white px-10 py-5 rounded-xl font-semibold text-lg uppercase tracking-widest text-xs flex items-center justify-center gap-3 transition-all transform hover:-translate-y-1 shadow-xl shadow-gold-500/20"
+              className="bg-[#d48217] hover:bg-[#b56e13] text-white px-6 py-3 rounded text-xs font-bold uppercase tracking-widest transition-all shadow-lg"
             >
-              Book Consultation Now
-              <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+              Plan Your Trip
             </a>
-            <div className="flex flex-col">
-              <span className="font-semibold text-3xl leading-tight text-navy-900 tracking-normal">98%</span>
-              <span className="text-[10px] uppercase tracking-wider text-xs font-bold text-navy-600/60 tracking-widest leading-none">Visa Success Rate</span>
-            </div>
           </div>
-        </motion.div>
-        
-        <motion.div 
-          className="lg:col-span-5 relative"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-        >
-          <div className="relative aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white group cursor-pointer" onClick={() => setShowVideo(true)}>
-            <img 
-              src={safariHeroUrl} 
-              alt="Kenyan Safari" 
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              referrerPolicy="no-referrer"
-            />
-            <div className="absolute inset-0 bg-navy-950/20 group-hover:bg-navy-950/40 transition-colors flex items-center justify-center">
-              <div className="w-24 h-24 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center transform group-hover:scale-125 transition-all duration-500">
-                <Play className="w-10 h-10 text-white fill-white ml-1" />
+
+          {/* Mobile Toggle */}
+          <button className="lg:hidden text-[#1a3626]" onClick={() => setMobileMenuOpen(true)}>
+            <Menu className="w-8 h-8" />
+          </button>
+        </nav>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div 
+              initial={{ opacity: 0, x: "100%" }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: "100%" }}
+              className="fixed inset-0 bg-white z-[60] p-6 flex flex-col"
+            >
+              <div className="flex justify-between items-center mb-12">
+                <div className="flex items-center gap-3">
+                  <img src={logoUrl} alt="Skytrails Logo" className="w-10 h-10 rounded-md object-cover" />
+                  <span className="font-display font-bold text-xl uppercase tracking-wider text-[#1a3626]">Skytrails</span>
+                </div>
+                <button className="text-[#1a3626]" onClick={() => setMobileMenuOpen(false)}>
+                  <X className="w-8 h-8" />
+                </button>
               </div>
-            </div>
-            {/* Play Badge */}
-            <div className="absolute bottom-10 left-10 flex items-center gap-4">
-              <div className="bg-gold-500 text-white font-semibold text-[10px] px-3 py-1 rounded-full uppercase tracking-widest text-xs italic">Watch Our Story</div>
-            </div>
-          </div>
-          
-          <div className="absolute -top-6 -right-6 bg-white p-6 rounded-3xl shadow-xl shadow-navy-900/10 border border-navy-50 flex flex-col items-center">
-            <div className="bg-gold-100 text-gold-600 text-[10px] font-semibold uppercase tracking-widest text-xs px-2 py-1 rounded mb-1">Approved</div>
-            <div className="text-2xl font-semibold text-navy-900 tracking-normal">Canada 🇨🇦</div>
+              <div className="flex flex-col gap-6 items-start">
+                {navLinks.map((link) => (
+                  <a 
+                    key={link.name} 
+                    href={link.href} 
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="text-2xl font-display font-semibold text-[#1a3626] hover:text-[#d48217] uppercase tracking-wider transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                ))}
+                <a 
+                  href="https://wa.me/254734365511"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full text-center bg-[#d48217] text-white py-4 rounded font-bold uppercase tracking-widest mt-8"
+                >
+                  Plan Your Trip
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
+    </>
+  );
+};
+
+const Hero = () => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    const destination = formData.get("Destination")?.toString().toLowerCase() || "";
+    const date = formData.get("Travel Date")?.toString() || "";
+    const duration = formData.get("Duration")?.toString() || "";
+
+    if (destination !== "other" && destination !== "") {
+      // If product is available, scroll the client to the packages section
+      const packagesSection = document.getElementById("packages");
+      if (packagesSection) {
+        packagesSection.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // If product is not available, trigger WhatsApp button animation
+      const destText = formData.get("Destination")?.toString() === "Other" ? "a custom destination" : formData.get("Destination")?.toString() || "somewhere";
+      const message = `Hello Skytrails, I am looking for a trip to ${destText} for ${duration} starting on ${date}. Is this available?`;
+      const event = new CustomEvent('trigger-whatsapp', { detail: message });
+      window.dispatchEvent(event);
+    }
+  };
+
+  return (
+    <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center">
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <img 
+          src={safariHeroUrl} 
+          alt="Kenyan Safari" 
+          className="w-full h-full object-cover"
+          referrerPolicy="no-referrer"
+        />
+        <div className="absolute inset-0 bg-black/40"></div>
+      </div>
+      
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center mt-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <span className="inline-block py-1 px-3 mb-6 border border-[#d48217] text-[#d48217] bg-black/30 backdrop-blur-sm rounded-full text-xs font-bold uppercase tracking-widest">
+            Welcome to Skytrails International
+          </span>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white leading-tight mb-6 drop-shadow-lg">
+            EXPERIENCE THE <br className="hidden md:block"/>
+            <span className="text-[#d48217]">WILD AFRICA</span>
+          </h1>
+          <p className="text-white/90 text-lg md:text-2xl font-medium max-w-3xl mx-auto mb-10 drop-shadow-md">
+            Tailor-made safaris, beach holidays, and expert international visa assistance from Nairobi to the world.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#packages" className="bg-[#d48217] hover:bg-[#b56e13] text-white px-8 py-4 rounded text-sm font-bold uppercase tracking-widest transition-all">
+              Explore Safaris
+            </a>
+            <a href="#visa" className="bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/50 text-white px-8 py-4 rounded text-sm font-bold uppercase tracking-widest transition-all">
+              Visa Services
+            </a>
           </div>
         </motion.div>
       </div>
 
-      {/* Video Modal */}
-      <AnimatePresence>
-        {showVideo && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-navy-950/95 backdrop-blur-sm"
+      {/* Booking Widget */}
+      <div id="booking-widget" className="absolute bottom-0 w-full z-20 translate-y-1/2 px-4 sm:px-6">
+        <form onSubmit={handleSubmit} className="max-w-4xl mx-auto bg-white rounded-lg shadow-2xl p-4 sm:p-6 flex flex-col md:flex-row gap-4 relative">
+          <div className="flex-1">
+            <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Destination</label>
+            <div className="flex items-center gap-2 text-[#1a3626] border-b border-gray-200 pb-2 relative">
+              <MapPin className="w-5 h-5 text-[#d48217] shrink-0" />
+              <select 
+                name="Destination" 
+                className="w-full font-semibold outline-none bg-transparent appearance-none cursor-pointer pr-6" 
+                defaultValue=""
+              >
+                <option value="" disabled>Where to?</option>
+                <optgroup label="Kenya (Domestic)">
+                  <option value="Maasai Mara">Maasai Mara</option>
+                  <option value="Amboseli">Amboseli National Park</option>
+                  <option value="Lake Nakuru">Lake Nakuru</option>
+                  <option value="Diani Beach">Diani Beach</option>
+                  <option value="Mombasa">Mombasa</option>
+                  <option value="Tsavo">Tsavo National Park</option>
+                </optgroup>
+                <optgroup label="Africa">
+                  <option value="Zanzibar">Zanzibar, Tanzania</option>
+                  <option value="Serengeti">Serengeti, Tanzania</option>
+                  <option value="South Africa">South Africa</option>
+                  <option value="Egypt">Egypt</option>
+                  <option value="Seychelles">Seychelles</option>
+                  <option value="Mauritius">Mauritius</option>
+                </optgroup>
+                <optgroup label="International">
+                  <option value="Dubai">Dubai, UAE</option>
+                  <option value="Paris">Paris, France</option>
+                  <option value="Maldives">Maldives</option>
+                  <option value="Thailand">Thailand</option>
+                  <option value="Singapore">Singapore</option>
+                  <option value="Bali">Bali, Indonesia</option>
+                  <option value="Turkey">Turkey</option>
+                </optgroup>
+                <optgroup label="Other">
+                  <option value="Other">Other (Custom Destination)</option>
+                </optgroup>
+              </select>
+              <ChevronDown className="w-4 h-4 text-gray-400 absolute right-0 pointer-events-none" />
+            </div>
+          </div>
+          <div className="flex-1">
+            <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Travel Date</label>
+            <div className="flex items-center gap-2 text-[#1a3626] border-b border-gray-200 pb-2">
+              <Calendar className="w-5 h-5 text-[#d48217] shrink-0" />
+              <input type="date" name="Travel Date" className="w-full font-semibold outline-none bg-transparent cursor-pointer" />
+            </div>
+          </div>
+          <div className="flex-1">
+            <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Duration</label>
+            <div className="flex items-center gap-2 text-[#1a3626] border-b border-gray-200 pb-2 relative">
+              <Clock className="w-5 h-5 text-[#d48217] shrink-0" />
+              <select name="Duration" className="w-full font-semibold outline-none bg-transparent appearance-none cursor-pointer pr-6">
+                <option value="Any Duration">Any Duration</option>
+                <option value="1 - 3 Days">1 - 3 Days</option>
+                <option value="4 - 7 Days">4 - 7 Days</option>
+                <option value="1 - 2 Weeks">1 - 2 Weeks</option>
+                <option value="2+ Weeks">2+ Weeks</option>
+              </select>
+              <ChevronDown className="w-4 h-4 text-gray-400 absolute right-0 pointer-events-none" />
+            </div>
+          </div>
+          <button 
+            type="submit" 
+            className="bg-[#1a3626] hover:bg-[#11261a] text-white px-8 py-3 rounded font-bold uppercase tracking-widest flex items-center justify-center gap-2 transition-all md:w-auto w-full"
           >
-            <button 
-              onClick={() => setShowVideo(false)}
-              className="absolute top-10 right-10 text-white hover:text-gold-500 transition-colors z-[210]"
-            >
-              <X className="w-10 h-10" />
-            </button>
-            <motion.div 
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              className="w-full max-w-5xl aspect-video bg-navy-900 rounded-[2rem] overflow-hidden shadow-4xl border border-navy-800 relative flex items-center justify-center"
-            >
-              <iframe 
-                className="w-full h-full" 
-                src="https://www.youtube.com/embed/P8frC_cLLD4?autoplay=1&mute=1" 
-                title="Skytrails Safari Video" 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-              ></iframe>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <Search className="w-4 h-4" />
+            Search
+          </button>
+        </form>
+      </div>
     </section>
   );
 };
 
-const ProblemSolution = () => {
-  const problems = [
-    "Visa rejections due to small mistakes",
-    "Confusing application processes",
-    "Unreliable travel agents",
-    "Difficulty planning safe, memorable safaris"
-  ];
-
+const AboutUs = () => {
   return (
-    <section className="py-32 bg-[#f3f7f0] border-y border-navy-100" id="problem">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
-          <div className="space-y-10">
-            <div className="label-mini !bg-amber-50 !text-amber-600">The Problem</div>
-            <h2 className="text-5xl md:text-6xl font-display font-semibold tracking-normal text-navy-950 leading-[1.05]">
-              TRAVEL PLANNING IS <span className="text-amber-500 underline decoration-4 underline-offset-8">OVERWHELMING.</span>
-            </h2>
-            <p className="text-navy-600/80 text-xl font-medium leading-relaxed italic">
-              "Most people waste time, money, and opportunities trying to figure it out alone."
-            </p>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {problems.map((p, i) => (
-                <div key={i} className="flex items-start gap-4 p-5 rounded-2xl bg-white border border-navy-100 group hover:border-amber-500/20 transition-all">
-                  <div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center text-amber-500 group-hover:bg-amber-500 group-hover:text-white transition-all shrink-0">
-                    <X className="w-4 h-4" />
-                  </div>
-                  <span className="text-navy-800 font-bold text-sm tracking-tight">{p}</span>
-                </div>
-              ))}
-            </div>
+    <section id="about" className="pt-40 pb-24 md:py-32 bg-[#fdfaf6]">
+      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center md:mt-16">
+        <div className="relative">
+          <div className="aspect-[4/5] rounded-t-full overflow-hidden border-8 border-white shadow-xl relative z-10">
+            <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80" alt="Safari Experience" className="w-full h-full object-cover" />
           </div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="p-10 md:p-14 rounded-[3rem] bg-navy-950 flex flex-col justify-center gap-8 shadow-3xl relative overflow-hidden"
-          >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gold-500/10 rounded-full blur-3xl"></div>
-            <div className="w-20 h-20 rounded-2xl bg-gold-500 flex items-center justify-center text-white">
-              <CheckCircle2 className="w-10 h-10" />
-            </div>
-            <h2 className="text-5xl font-display font-semibold text-white leading-tight tracking-normal">WE SIMPLIFY <span className="text-gold-500">EVERYTHING.</span></h2>
-            <p className="text-white text-xl font-medium leading-relaxed">
-              At Skytrails International Kenya, we guide you step-by-step through visa applications and create seamless safari experiences tailored to you.
-            </p>
-            <div className="space-y-4">
-              <div className="flex items-center gap-4 text-white font-semibold uppercase tracking-widest text-xs text-xs py-3 px-6 rounded-xl bg-white/5 border border-white/10 w-fit">
-                <CheckCircle2 className="w-4 h-4 text-gold-500" /> 
-                Smooth. Fast. Reliable.
+          <div className="absolute -bottom-10 -right-10 w-2/3 aspect-square rounded-full border-[10px] border-[#fdfaf6] overflow-hidden shadow-xl z-20 hidden md:block">
+            <img src="https://images.unsplash.com/photo-1547471080-7fc2caa6f17f?auto=format&fit=crop&q=80" alt="Visa Assistance" className="w-full h-full object-cover" />
+          </div>
+          <div className="absolute top-10 -left-10 w-32 h-32 bg-[#d48217]/10 rounded-full blur-2xl z-0"></div>
+        </div>
+        
+        <div>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-12 h-[2px] bg-[#d48217]"></div>
+            <span className="text-[#d48217] font-bold uppercase tracking-widest text-sm">About Skytrails</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-[#1a3626] mb-6 leading-tight">
+            YOUR TRUSTED TRAVEL PARTNER IN NAIROBI
+          </h2>
+          <p className="text-gray-600 mb-6 leading-relaxed">
+            Founded by passionate local travel experts, Skytrails International Kenya is dedicated to offering unique, hassle-free travel experiences. Whether you're looking to explore the majestic wildlife of the Maasai Mara, relax on the pristine beaches of Diani, or secure a visa for your international journey, we are here to guide you.
+          </p>
+          <p className="text-gray-600 mb-10 leading-relaxed">
+            We pride ourselves on 24/7 customer support, a best price guarantee, and personalized itineraries that cater to solo adventurers, families, and business travelers alike.
+          </p>
+          
+          <div className="grid grid-cols-2 gap-6 mb-10">
+            <div className="flex gap-4 items-start">
+              <div className="w-12 h-12 bg-[#1a3626]/10 rounded-full flex items-center justify-center shrink-0">
+                <Plane className="w-6 h-6 text-[#1a3626]" />
+              </div>
+              <div>
+                <h4 className="font-bold text-[#1a3626] mb-1">Custom Tours</h4>
+                <p className="text-xs text-gray-500">Tailored to your needs</p>
               </div>
             </div>
-          </motion.div>
+            <div className="flex gap-4 items-start">
+              <div className="w-12 h-12 bg-[#d48217]/10 rounded-full flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-6 h-6 text-[#d48217]" />
+              </div>
+              <div>
+                <h4 className="font-bold text-[#1a3626] mb-1">Visa Experts</h4>
+                <p className="text-xs text-gray-500">High success rates</p>
+              </div>
+            </div>
+          </div>
+          
+          <a href="#contact" className="inline-block bg-[#1a3626] hover:bg-[#11261a] text-white px-8 py-4 rounded text-sm font-bold uppercase tracking-widest transition-all">
+            Read Our Story
+          </a>
         </div>
       </div>
     </section>
   );
 };
 
-const ServicesGrid = () => {
+const ComprehensiveServices = () => {
   const services = [
     {
-      title: "Expert Visa Assistance",
-      desc: "We handle applications for Canada, Europe, USA, Australia—reducing errors and increasing approval chances.",
-      icon: "🛡️",
-      color: "bg-navy-100 text-blue-600"
+      icon: <Plane className="w-8 h-8 text-[#d48217]" />,
+      title: "Flight Bookings",
+      desc: "Seamless international and domestic air ticketing with major airlines."
     },
     {
-      title: "Customized Safaris",
-      desc: "Explore Kenya like never before with personalized packages designed for unforgettable memories.",
-      icon: "🦒",
-      color: "bg-green-100 text-green-600"
+      icon: <Map className="w-8 h-8 text-[#d48217]" />,
+      title: "Safari Packages",
+      desc: "Explore Maasai Mara, Amboseli, Samburu, and more with expert guides."
     },
     {
-      title: "Flight Ticketing",
-      desc: "Seamless global flight bookings. We secure the best routes and rates for your schedule.",
-      icon: "✈️",
-      color: "bg-sky-100 text-sky-600"
+      icon: <Sun className="w-8 h-8 text-[#d48217]" />,
+      title: "Holidays & Tours",
+      desc: "Customized beach getaways to Diani, Zanzibar, Maldives, and Dubai."
     },
     {
-      title: "Fast & Reliable Process",
-      desc: "We save you time by handling complex paperwork and logistics efficiently every step of the way.",
-      icon: "⚡",
-      color: "bg-purple-100 text-purple-600"
+      icon: <Briefcase className="w-8 h-8 text-[#d48217]" />,
+      title: "Corporate Travel",
+      desc: "Efficient travel management and transport solutions for businesses."
+    },
+    {
+      icon: <ShieldCheck className="w-8 h-8 text-[#d48217]" />,
+      title: "Visa Assistance",
+      desc: "Expert guidance for Canada, US, Europe, and Australia visa applications."
+    },
+    {
+      icon: <CheckCircle2 className="w-8 h-8 text-[#d48217]" />,
+      title: "Travel Insurance",
+      desc: "Comprehensive coverage options to ensure peace of mind while traveling."
     }
   ];
 
   return (
-    <section id="services" className="py-32 bg-[#ebf0e6]">
-      <div className="max-w-7xl mx-auto px-6 text-center">
-        <div className="label-mini mb-6">Our Services</div>
-        <h2 className="text-5xl md:text-7xl font-display font-semibold mb-16 text-navy-950 tracking-normal italic uppercase tracking-wider text-xs">What We <span className="text-gold-500">Do Best</span></h2>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service, i) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="bold-card flex flex-col items-start text-left gap-6 group hover:border-gold-500/30 transition-all hover:shadow-xl hover:shadow-navy-900/5"
-            >
-              <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-3xl ${service.color} group-hover:scale-110 transition-transform`}>
-                {service.icon}
-              </div>
-              <h3 className="text-2xl font-display font-semibold text-navy-950 tracking-tight uppercase tracking-wider text-xs leading-none">{service.title}</h3>
-              <p className="text-navy-600/80 font-medium leading-relaxed leading-snug">{service.desc}</p>
-            </motion.div>
-          ))}
-        </div>
+    <section id="services" className="py-24 bg-[#1a3626] relative overflow-hidden">
+      <div className="absolute inset-0 opacity-10">
+        <img src="https://images.unsplash.com/photo-1544463878-c84cb1c37b80?auto=format&fit=crop&q=80" alt="Map pattern" className="w-full h-full object-cover" />
       </div>
-    </section>
-  );
-};
-
-const HowItWorks = () => {
-  const steps = [
-    { num: "01", title: "Book Consultation", desc: "Expert assessment of your travel needs." },
-    { num: "02", title: "Submit Documents", desc: "We guide you on exactly what's required." },
-    { num: "03", title: "We Handle Processing", desc: "Paperwork, logistics, and follow-ups." },
-    { num: "04", title: "Travel Confidently", desc: "Your journey starts here without the stress." }
-  ];
-
-  return (
-    <section id="how-it-works" className="py-24 bg-navy-950 text-white overflow-hidden relative">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid md:grid-cols-4 gap-12">
-          {steps.map((step, i) => (
-            <div key={i} className="flex flex-col gap-4">
-              <div className="text-white font-display font-semibold text-5xl tracking-normal mb-2 italic">{step.num}</div>
-              <h3 className="text-lg font-semibold uppercase tracking-widest text-xs text-gold-500">{step.title}</h3>
-              <p className="text-white text-sm font-bold uppercase tracking-wider text-xs tracking-tight leading-relaxed">{step.desc}</p>
+      <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
+        <div className="flex items-center justify-center gap-3 mb-4">
+          <div className="w-12 h-[2px] bg-[#d48217]"></div>
+          <span className="text-[#d48217] font-bold uppercase tracking-widest text-sm">What We Offer</span>
+          <div className="w-12 h-[2px] bg-[#d48217]"></div>
+        </div>
+        <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-16">
+          COMPREHENSIVE TRAVEL SOLUTIONS
+        </h2>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+          {services.map((srv, idx) => (
+            <div key={idx} className="bg-white/10 backdrop-blur-sm border border-white/20 p-8 rounded-xl hover:bg-white/20 transition-all hover:-translate-y-1">
+              <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-6">
+                {srv.icon}
+              </div>
+              <h3 className="text-xl font-display font-bold text-white mb-3">{srv.title}</h3>
+              <p className="text-white/80 leading-relaxed">{srv.desc}</p>
             </div>
           ))}
         </div>
@@ -519,136 +425,282 @@ const HowItWorks = () => {
   );
 };
 
-const Testimonials = () => {
-  const reviews = [
-    { text: "Skytrails made my visa process smooth and stress-free. Highly recommend!", author: "International Student" },
-    { text: "The safari experience was beyond amazing—everything was perfectly planned!", author: "Nature Photographer" }
+const FeaturedPackages = () => {
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const categories = ["All", "Domestic", "International", "Honeymoon"];
+
+  const packages = [
+    {
+      title: "Maasai Mara Migration Safari",
+      image: "https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&q=80",
+      duration: "3 Days / 2 Nights",
+      location: "Maasai Mara, Kenya",
+      price: "From Ksh 25,500 pps",
+      rating: 5,
+      category: "Domestic"
+    },
+    {
+      title: "Amboseli Elephant Trail",
+      image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80",
+      duration: "2 Days / 1 Night",
+      location: "Amboseli National Park",
+      price: "From Ksh 15,000 pps",
+      rating: 5,
+      category: "Domestic"
+    },
+    {
+      title: "Diani Beach Getaway",
+      image: "https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?auto=format&fit=crop&q=80",
+      duration: "4 Days / 3 Nights",
+      location: "South Coast, Kenya",
+      price: "From Ksh 28,500 pps",
+      rating: 4,
+      category: "Domestic"
+    },
+    {
+      title: "Zanzibar Honeymoon Special",
+      image: "https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&q=80",
+      duration: "5 Days / 4 Nights",
+      location: "Zanzibar, Tanzania",
+      price: "From Ksh 75,000 pps",
+      rating: 5,
+      category: "Honeymoon"
+    },
+    {
+      title: "Dubai Desert & City Tour",
+      image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80",
+      duration: "5 Days / 4 Nights",
+      location: "Dubai, UAE",
+      price: "From Ksh 105,000 pps",
+      rating: 5,
+      category: "International"
+    },
+    {
+      title: "Paris Romantic Getaway",
+      image: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&q=80",
+      duration: "6 Days / 5 Nights",
+      location: "Paris, France",
+      price: "From Ksh 185,000 pps",
+      rating: 5,
+      category: "Honeymoon"
+    }
   ];
 
+  const filteredPackages = activeCategory === "All" 
+    ? packages 
+    : packages.filter(pkg => pkg.category === activeCategory);
+
   return (
-    <section className="py-32 bg-[#f3f7f0] border-t border-navy-100">
+    <section id="packages" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-12">
-          {reviews.map((r, i) => (
-            <motion.div 
-              key={i} 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bold-card relative flex flex-col gap-6"
-            >
-              <div className="text-gold-500">
-                <Quote className="w-12 h-12 opacity-20" />
-              </div>
-              <p className="text-navy-900 text-2xl font-semibold tracking-tight leading-tight italic">"{r.text}"</p>
-              <div className="flex items-center gap-4 mt-auto">
-                <div className="w-10 h-10 rounded-full bg-navy-100 flex items-center justify-center text-navy-600/80 font-semibold text-xs">
-                  {r.author[0]}
+        <div className="text-center mb-10">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="w-12 h-[2px] bg-[#d48217]"></div>
+            <span className="text-[#d48217] font-bold uppercase tracking-widest text-sm">Popular Tours</span>
+            <div className="w-12 h-[2px] bg-[#d48217]"></div>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-[#1a3626] mb-8">
+            FEATURED PACKAGES
+          </h2>
+          
+          {/* Category Tabs */}
+          <div className="flex flex-wrap justify-center gap-3">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-6 py-2 rounded-full text-sm font-bold tracking-widest transition-all ${
+                  activeCategory === cat 
+                    ? "bg-[#1a3626] text-white" 
+                    : "bg-gray-100 text-gray-500 hover:bg-[#d48217] hover:text-white"
+                }`}
+              >
+                {cat.toUpperCase()}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <AnimatePresence mode="popLayout">
+            {filteredPackages.map((pkg, idx) => (
+              <motion.div 
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                key={pkg.title} 
+                className="group rounded-xl overflow-hidden shadow-lg border border-gray-100 bg-white transition-all hover:-translate-y-2 hover:shadow-2xl"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <img src={pkg.image} alt={pkg.title} referrerPolicy="no-referrer" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-[#1a3626] flex items-center gap-1">
+                    <Star className="w-3 h-3 text-[#d48217] fill-[#d48217]" />
+                    {pkg.rating}.0
+                  </div>
+                  <div className="absolute top-4 left-4 bg-[#d48217] px-3 py-1 rounded-full text-xs font-bold text-white uppercase tracking-wider shadow-md">
+                    {pkg.category}
+                  </div>
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center gap-2 text-gray-500 text-xs font-semibold uppercase tracking-wider mb-3">
+                    <MapPin className="w-3 h-3 text-[#d48217]" /> {pkg.location}
+                  </div>
+                  <h3 className="font-display font-bold text-xl text-[#1a3626] mb-4 leading-tight group-hover:text-[#d48217] transition-colors">{pkg.title}</h3>
+                  <div className="flex items-center gap-2 text-gray-600 text-sm mb-6 border-b border-gray-100 pb-4">
+                    <Clock className="w-4 h-4 text-[#d48217]" /> {pkg.duration}
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <div className="font-bold text-lg text-[#1a3626]">{pkg.price}</div>
+                    <a href={`https://wa.me/254734365511?text=Hello Skytrails, I am interested in the ${pkg.title} package.`} target="_blank" rel="noopener noreferrer" className="text-sm font-bold uppercase tracking-widest text-[#d48217] hover:text-[#1a3626] transition-colors flex items-center gap-1">
+                      Book Now <ArrowRight className="w-4 h-4" />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const VisaServices = () => {
+  return (
+    <section id="visa" className="py-24 bg-[#fdfaf6] text-[#1a3626] relative overflow-hidden">
+      <div className="absolute inset-0 opacity-5">
+        <img src="https://images.unsplash.com/photo-1544463878-c84cb1c37b80?auto=format&fit=crop&q=80" alt="Map pattern" className="w-full h-full object-cover" />
+      </div>
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-[2px] bg-[#d48217]"></div>
+              <span className="text-[#d48217] font-bold uppercase tracking-widest text-sm">International Travel</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 leading-tight text-[#1a3626]">
+              EXPERT VISA ASSISTANCE
+            </h2>
+            <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+              Don't let complicated paperwork stop you from exploring the world. We specialize in securing visas for major destinations with a highly successful track record.
+            </p>
+            <ul className="space-y-4 mb-10">
+              {['Canada & USA Visas', 'Schengen (Europe) Visas', 'UK & Australia Visas', 'Dubai & Middle East', 'Study & Work Permits'].map((item, i) => (
+                <li key={i} className="flex items-center gap-3 font-semibold text-lg text-[#1a3626]">
+                  <div className="w-6 h-6 rounded-full bg-[#d48217]/10 flex items-center justify-center shrink-0">
+                    <CheckCircle2 className="w-4 h-4 text-[#d48217]" />
+                  </div>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <a href="https://wa.me/254734365511?text=Hello Skytrails, I need assistance with a Visa application." target="_blank" rel="noopener noreferrer" className="inline-block bg-[#1a3626] hover:bg-[#11261a] text-white px-8 py-4 rounded text-sm font-bold uppercase tracking-widest transition-all shadow-xl">
+              Get Visa Help Today
+            </a>
+          </div>
+          <div className="relative">
+            <div className="grid grid-cols-2 gap-4">
+              <img src="https://images.unsplash.com/photo-1554160359-58b29f0efcd9?auto=format&fit=crop&q=80" alt="Passport and tickets" className="rounded-2xl shadow-lg w-full h-64 object-cover mt-12" />
+              <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&q=80" alt="Airplane tail" className="rounded-2xl shadow-lg w-full h-64 object-cover" />
+            </div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-2xl shadow-2xl text-center border-4 border-[#fdfaf6]">
+              <div className="text-4xl font-display font-bold text-[#d48217] mb-1">98%</div>
+              <div className="text-xs font-bold uppercase tracking-widest text-[#1a3626]">Success Rate</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const ContactSection = () => {
+  return (
+    <section id="contact" className="py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-16">
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-[2px] bg-[#d48217]"></div>
+              <span className="text-[#d48217] font-bold uppercase tracking-widest text-sm">Get in Touch</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-[#1a3626] mb-6">
+              READY TO START YOUR JOURNEY?
+            </h2>
+            <p className="text-gray-600 mb-10 leading-relaxed">
+              Reach out to our experts today. We're ready to help you plan the perfect safari, secure your visa, or book your next international flight.
+            </p>
+            
+            <div className="space-y-6">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-[#1a3626]/5 rounded-full flex items-center justify-center shrink-0">
+                  <Phone className="w-5 h-5 text-[#1a3626]" />
                 </div>
                 <div>
-                  <div className="text-navy-950 font-semibold text-sm uppercase tracking-wider text-xs">{r.author}</div>
-                  <div className="text-[10px] text-navy-600/60 font-bold uppercase tracking-widest text-xs">Verified Client</div>
+                  <h4 className="font-bold text-[#1a3626] text-sm uppercase tracking-widest mb-1">Call Us 24/7</h4>
+                  <p className="text-gray-600 font-medium">+254 734 365 511</p>
                 </div>
               </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const FAQSection = () => {
-  const faqs = [
-    { q: "How long does visa processing take?", a: "Processing times vary by country, but we guide you on timelines and ensure fast submission." },
-    { q: "Do you guarantee visa approval?", a: "No one can guarantee approval, but we significantly improve your chances by avoiding common mistakes." },
-    { q: "Can I customize my safari package?", a: "Yes, all our safaris are tailored to your preferences and budget." },
-    { q: "Do you assist first-time travelers?", a: "Absolutely. We specialize in guiding beginners through the entire process." }
-  ];
-
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
-
-  return (
-    <section id="faq" className="py-32 bg-[#ebf0e6]">
-      <div className="max-w-4xl mx-auto px-6">
-        <div className="text-center mb-20">
-          <div className="label-mini !bg-navy-100 !text-navy-800 mb-6">Support</div>
-          <h2 className="text-5xl md:text-6xl font-display font-semibold text-navy-950 tracking-normal italic">Common <span className="text-gold-500">Concerns</span></h2>
-        </div>
-        
-        <div className="space-y-4">
-          {faqs.map((faq, i) => (
-            <div key={i} className="rounded-3xl bg-white border border-navy-100 overflow-hidden transition-all hover:bg-white">
-              <button 
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full p-8 flex justify-between items-center text-left"
-              >
-                <span className="font-semibold text-xl text-navy-950 tracking-tight uppercase tracking-wider text-xs leading-none">{faq.q}</span>
-                <ChevronDown className={`w-6 h-6 transition-transform text-gold-500 ${openIndex === i ? "rotate-180" : ""}`} />
-              </button>
-              <AnimatePresence>
-                {openIndex === i && (
-                  <motion.div 
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    className="overflow-hidden"
-                  >
-                    <div className="px-8 pb-8 text-navy-600/80 text-lg font-medium leading-relaxed border-t border-navy-50 pt-6">
-                      {faq.a}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-[#1a3626]/5 rounded-full flex items-center justify-center shrink-0">
+                  <Mail className="w-5 h-5 text-[#1a3626]" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-[#1a3626] text-sm uppercase tracking-widest mb-1">Email Us</h4>
+                  <p className="text-gray-600 font-medium">info@skytrailsinternational.com</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 bg-[#1a3626]/5 rounded-full flex items-center justify-center shrink-0">
+                  <MapPin className="w-5 h-5 text-[#1a3626]" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-[#1a3626] text-sm uppercase tracking-widest mb-1">Our Office</h4>
+                  <p className="text-gray-600 font-medium">Nairobi, Kenya</p>
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const FinalCTA = () => {
-  return (
-    <section className="py-40 bg-[#f3f7f0] relative overflow-hidden text-center">
-      <div className="absolute inset-0 bg-[#dce6d5] pointer-events-none"></div>
-      <div className="absolute top-0 left-0 w-full h-1/2 bg-[#f3f7f0] skew-y-1"></div>
-      
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="label-mini mb-10 !text-sm px-6 py-2">Limited Slots Available</div>
-        <h2 className="text-6xl md:text-8xl font-display font-semibold mb-10 leading-[0.9] tracking-normal text-navy-950 italic">
-          Ready to Travel <br />
-          <span className="text-gold-500">WITHOUT STRESS?</span>
-        </h2>
-        <p className="text-navy-600/80 text-2xl font-medium mb-16 max-w-2xl mx-auto leading-relaxed">
-          Don't risk delays or rejection. Let experts handle your journey across the globe.
-        </p>
-        
-        <div className="flex flex-col items-center gap-10">
-          <a 
-            href="https://wa.me/254734365511" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-gold-500 text-white px-16 py-8 rounded-[2rem] font-semibold text-2xl uppercase tracking-widest text-xs hover:bg-gold-600 transform hover:-translate-y-2 transition-all shadow-3xl shadow-gold-500/40"
-          >
-            👉 Start Your Journey
-          </a>
+          </div>
           
-          <div className="flex flex-col md:flex-row gap-12 items-center">
-            <div className="text-center">
-              <div className="text-[10px] text-navy-600/60 font-semibold uppercase tracking-widest text-xs mb-2">Location</div>
-              <div className="text-xl font-semibold text-navy-950 tracking-normal">Nairobi, Kenya</div>
-            </div>
-            <div className="w-[1px] h-12 bg-navy-100 hidden md:block"></div>
-            <div className="text-center">
-              <div className="text-[10px] text-navy-600/60 font-semibold uppercase tracking-widest text-xs mb-2">Call/WhatsApp</div>
-              <div className="text-3xl font-semibold text-navy-950 tracking-normal">0734 365 511</div>
-            </div>
-            <div className="w-[1px] h-12 bg-navy-100 hidden md:block"></div>
-            <div className="text-center">
-              <div className="text-[10px] text-navy-600/60 font-semibold uppercase tracking-widest text-xs mb-2">Email Us</div>
-              <div className="text-xl font-semibold text-gold-500 tracking-normal">info@skytrailsinternational.com</div>
-            </div>
+          <div className="bg-[#1a3626] p-8 md:p-10 rounded-2xl text-white shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+            <h3 className="text-2xl font-display font-bold mb-6">Send Us a Message</h3>
+            <form className="space-y-4 relative z-10" onSubmit={(e) => { e.preventDefault(); alert("Message sent successfully! We will get back to you shortly."); }}>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-white/70 mb-2">First Name</label>
+                  <input type="text" className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-[#d48217] transition-colors" required />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest text-white/70 mb-2">Last Name</label>
+                  <input type="text" className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-[#d48217] transition-colors" required />
+                </div>
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-white/70 mb-2">Email Address</label>
+                <input type="email" className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-[#d48217] transition-colors" required />
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-white/70 mb-2">Service Required</label>
+                <select className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-[#d48217] transition-colors [&>option]:text-[#1a3626]" required>
+                  <option value="" disabled selected>Select a Service</option>
+                  <option value="safari">Safari Package</option>
+                  <option value="visa">Visa Assistance</option>
+                  <option value="flight">Flight Booking</option>
+                  <option value="other">Other Inquiry</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase tracking-widest text-white/70 mb-2">Your Message</label>
+                <textarea rows={4} className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-[#d48217] transition-colors resize-none" required></textarea>
+              </div>
+              <button type="submit" className="w-full bg-[#d48217] hover:bg-[#b56e13] text-white py-4 rounded-lg font-bold uppercase tracking-widest transition-colors mt-4">
+                Submit Inquiry
+              </button>
+            </form>
           </div>
         </div>
       </div>
@@ -658,26 +710,72 @@ const FinalCTA = () => {
 
 const Footer = () => {
   return (
-    <footer className="py-12 bg-navy-900 border-t border-navy-900 text-white">
+    <footer className="bg-[#0b1811] text-white/70 pt-20 pb-10 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
-          <div className="flex items-center gap-3">
-            <img src={logoUrl} alt="Skytrails Logo" className="w-10 h-10 rounded-xl object-cover" />
-            <span className="font-display font-semibold text-2xl tracking-normal italic">Skytrails International Kenya</span>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          <div className="lg:col-span-1">
+            <div className="flex items-center gap-3 mb-6">
+              <img src={logoUrl} alt="Skytrails Logo" className="w-12 h-12 rounded-md object-cover bg-white" />
+              <div className="flex flex-col">
+                <span className="font-display font-bold text-xl leading-none uppercase tracking-wider text-white">Skytrails</span>
+                <span className="text-[10px] uppercase tracking-widest text-[#d48217] font-semibold">International Kenya</span>
+              </div>
+            </div>
+            <p className="text-sm leading-relaxed mb-6">
+              Your premier travel partner in Nairobi, specializing in tailored safaris, global flights, and seamless visa processing.
+            </p>
+            <div className="flex gap-4">
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#d48217] hover:text-white transition-colors">
+                <Facebook className="w-4 h-4" />
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#d48217] hover:text-white transition-colors">
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#d48217] hover:text-white transition-colors">
+                <Twitter className="w-4 h-4" />
+              </a>
+            </div>
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-10 text-[10px] font-semibold uppercase tracking-widest text-xs text-navy-200">
-            <span className="text-white/80">📍 Nairobi, Kenya</span>
-            <a href="#" className="hover:text-gold-500 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-gold-500 transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-gold-500 transition-colors">Help Center</a>
+          
+          <div>
+            <h4 className="text-white font-bold uppercase tracking-widest mb-6">Quick Links</h4>
+            <ul className="space-y-3">
+              <li><a href="#" className="hover:text-[#d48217] transition-colors text-sm">Home</a></li>
+              <li><a href="#about" className="hover:text-[#d48217] transition-colors text-sm">About Us</a></li>
+              <li><a href="#packages" className="hover:text-[#d48217] transition-colors text-sm">Safari Packages</a></li>
+              <li><a href="#visa" className="hover:text-[#d48217] transition-colors text-sm">Visa Services</a></li>
+              <li><a href="#contact" className="hover:text-[#d48217] transition-colors text-sm">Contact Us</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="text-white font-bold uppercase tracking-widest mb-6">Top Services</h4>
+            <ul className="space-y-3">
+              <li><a href="#" className="hover:text-[#d48217] transition-colors text-sm">Flight Ticketing</a></li>
+              <li><a href="#" className="hover:text-[#d48217] transition-colors text-sm">Canada Visa</a></li>
+              <li><a href="#" className="hover:text-[#d48217] transition-colors text-sm">Maasai Mara Safari</a></li>
+              <li><a href="#" className="hover:text-[#d48217] transition-colors text-sm">Dubai Packages</a></li>
+              <li><a href="#" className="hover:text-[#d48217] transition-colors text-sm">Corporate Travel</a></li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="text-white font-bold uppercase tracking-widest mb-6">Newsletter</h4>
+            <p className="text-sm mb-4">Subscribe for the latest travel deals and visa updates.</p>
+            <form className="flex" onSubmit={(e) => e.preventDefault()}>
+              <input type="email" placeholder="Your Email" className="bg-white/10 text-white px-4 py-3 rounded-l-md w-full focus:outline-none focus:bg-white/20 text-sm" required />
+              <button type="submit" className="bg-[#d48217] hover:bg-[#b56e13] px-4 py-3 rounded-r-md transition-colors">
+                <ChevronRight className="w-5 h-5 text-white" />
+              </button>
+            </form>
           </div>
         </div>
-        <div className="pt-8 border-t border-navy-800 flex flex-col md:flex-row justify-between items-center gap-4 text-navy-400 text-[10px] font-semibold uppercase tracking-widest text-xs">
-          <p>© 2026 Skytrails International Kenya. All Rights Reserved.</p>
+        
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+          <p>&copy; {new Date().getFullYear()} Skytrails International Kenya. All rights reserved.</p>
           <div className="flex gap-4">
-            <Instagram className="w-4 h-4" />
-            <Facebook className="w-4 h-4" />
-            <Twitter className="w-4 h-4" />
+            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
           </div>
         </div>
       </div>
@@ -685,23 +783,64 @@ const Footer = () => {
   );
 };
 
-// --- Main App ---
+const WhatsAppButton = () => {
+  const [isWiggling, setIsWiggling] = useState(false);
 
-export default function App() {
+  useEffect(() => {
+    const handleWiggle = () => {
+      setIsWiggling(true);
+      setTimeout(() => setIsWiggling(false), 2000); // Stop wiggling after 2 seconds
+    };
+
+    window.addEventListener('trigger-whatsapp', handleWiggle);
+    return () => window.removeEventListener('trigger-whatsapp', handleWiggle);
+  }, []);
+
   return (
-    <div className="antialiased selection:bg-navy-500/30 selection:text-white overflow-x-hidden">
+    <a 
+      href="https://wa.me/254734365511" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className={`fixed bottom-6 right-6 z-[100] bg-[#25D366] hover:bg-[#1ebe57] text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110 group ${
+        isWiggling ? 'animate-[wiggle_0.3s_ease-in-out_infinite]' : ''
+      }`}
+      aria-label="Chat on WhatsApp"
+    >
+      <MessageSquare className="w-8 h-8" />
+      <span className="absolute right-full mr-4 bg-white text-[#1a3626] font-bold text-xs py-2 px-4 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+        Chat with us!
+      </span>
+      {/* Alert dot */}
+      {isWiggling && (
+        <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-white"></span>
+      )}
+    </a>
+  );
+};
+
+function App() {
+  return (
+    <div className="font-sans text-[#1a3626] bg-[#fdfaf6]">
+      <style dangerouslySetInnerHTML={{__html: `
+        html { scroll-behavior: smooth; }
+        @keyframes wiggle {
+          0%, 100% { transform: rotate(-10deg) scale(1.1); }
+          50% { transform: rotate(10deg) scale(1.1); }
+        }
+      `}} />
       <Navbar />
       <main>
         <Hero />
-        <ProblemSolution />
-        <ServicesGrid />
-        <HowItWorks />
-        <Testimonials />
-        <FAQSection />
-        <FinalCTA />
+        <AboutUs />
+        <ComprehensiveServices />
+        <FeaturedPackages />
+        <VisaServices />
+        <ContactSection />
       </main>
       <Footer />
-      <ChatWidget />
+      <WhatsAppButton />
     </div>
   );
 }
+
+export default App;
