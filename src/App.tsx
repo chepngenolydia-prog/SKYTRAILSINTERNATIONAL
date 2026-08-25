@@ -27,8 +27,8 @@ import {
   Send
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import logoUrl from "./assets/images/skytrails_logo_1779017357014.png";
-import safariHeroUrl from "./assets/images/safari_hero_1779016444553.png";
+const logoUrl = "https://i.postimg.cc/fWX5t62Y/Skytrails-image.jpg";
+import beachHeroUrl from "./assets/images/tropical_beach_hero_1787643081235.jpg";
 
 // --- Theme Colors ---
 // Primary: #1a3626 (Deep Forest Green)
@@ -77,12 +77,8 @@ const Navbar = () => {
       <TopBar />
       <header className={`sticky top-0 w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md py-3" : "bg-white/95 py-5"}`}>
         <nav className="max-w-7xl mx-auto px-6 flex justify-between items-center text-[#1a3626]">
-          <div className="flex items-center gap-3">
-            <img src={logoUrl} alt="Skytrails Logo" className="h-10 w-auto object-contain" />
-            <div className="flex flex-col">
-              <span className="font-display font-bold text-xl leading-none uppercase tracking-wider text-[#1a3626]">Skytrails</span>
-              <span className="text-[10px] uppercase tracking-widest text-[#d48217] font-semibold">International Kenya</span>
-            </div>
+          <div className="flex items-center">
+            <img src={logoUrl} alt="Skytrails Logo" className="h-16 w-auto object-contain mix-blend-multiply" />
           </div>
 
           {/* Desktop Links */}
@@ -122,9 +118,8 @@ const Navbar = () => {
               className="fixed inset-0 bg-white z-[60] p-6 flex flex-col"
             >
               <div className="flex justify-between items-center mb-12">
-                <div className="flex items-center gap-3">
-                  <img src={logoUrl} alt="Skytrails Logo" className="h-10 w-auto object-contain" />
-                  <span className="font-display font-bold text-xl uppercase tracking-wider text-[#1a3626]">Skytrails</span>
+                <div className="flex items-center">
+                  <img src={logoUrl} alt="Skytrails Logo" className="h-16 w-auto object-contain mix-blend-multiply" />
                 </div>
                 <button className="text-[#1a3626]" onClick={() => setMobileMenuOpen(false)}>
                   <X className="w-8 h-8" />
@@ -188,7 +183,7 @@ const Hero = () => {
     <section className="relative h-[85vh] min-h-[600px] flex items-center justify-center">
       <div className="absolute inset-0 z-0 overflow-hidden">
         <img 
-          src={safariHeroUrl} 
+          src={beachHeroUrl} 
           alt="Kenyan Safari" 
           className="w-full h-full object-cover"
           referrerPolicy="no-referrer"
@@ -715,8 +710,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-6">
-              <img src={logoUrl} alt="Skytrails Logo" className="h-14 w-auto object-contain bg-white rounded-md p-1" />
+            <div className="flex items-center mb-6">
               <div className="flex flex-col">
                 <span className="font-display font-bold text-xl leading-none uppercase tracking-wider text-white">Skytrails</span>
                 <span className="text-[10px] uppercase tracking-widest text-[#d48217] font-semibold">International Kenya</span>
