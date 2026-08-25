@@ -614,6 +614,36 @@ const VisaServices = () => {
 };
 
 const ContactSection = () => {
+  const [status, setStatus] = useState("");
+
+  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("Sending...");
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    // Fallback if not injected
+    if (!formData.get("access_key")) {
+       formData.append("access_key", "b4fd8a9f-46a9-47ee-ac16-8e861f588163");
+    }
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+      const data = await response.json();
+      if (data.success) {
+        setStatus("Message sent successfully!");
+        form.reset();
+        setTimeout(() => setStatus(""), 5000);
+      } else {
+        setStatus("Failed to send. Please try again.");
+      }
+    } catch (err) {
+      setStatus("An error occurred.");
+    }
+  };
   return (
     <section id="contact" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
@@ -664,7 +694,7 @@ const ContactSection = () => {
           <div className="bg-[#1a3626] p-8 md:p-10 rounded-2xl text-white shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
             <h3 className="text-2xl font-display font-bold mb-6">Send Us a Message</h3>
-            <form className="space-y-4 relative z-10" action="https://api.web3forms.com/submit" method="POST">
+            <form className="space-y-4 relative z-10" onSubmit={handleContactSubmit}>
               <input type="hidden" name="access_key" value="b4fd8a9f-46a9-47ee-ac16-8e861f588163" />
               <input type="hidden" name="subject" value="New Contact Form Submission - Skytrails" />
               <input type="hidden" name="from_name" value="Skytrails Website" />
@@ -697,8 +727,7 @@ const ContactSection = () => {
                 <textarea name="Message" rows={4} className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-[#d48217] transition-colors resize-none" required></textarea>
               </div>
               <button type="submit" className="w-full bg-[#d48217] hover:bg-[#b56e13] text-white py-4 rounded-lg font-bold uppercase tracking-widest transition-colors mt-4">
-                Submit Inquiry
-              </button>
+                Submit Inquiry              </button>              {status && <p className="text-center text-sm font-bold mt-4 text-white">{status}</p>}
             </form>
           </div>
         </div>
@@ -708,6 +737,35 @@ const ContactSection = () => {
 };
 
 const Footer = () => {
+  const [status, setStatus] = useState("");
+
+  const handleNewsletterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus("Subscribing...");
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    if (!formData.get("access_key")) {
+       formData.append("access_key", "b4fd8a9f-46a9-47ee-ac16-8e861f588163");
+    }
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+      const data = await response.json();
+      if (data.success) {
+        setStatus("Subscribed!");
+        form.reset();
+        setTimeout(() => setStatus(""), 5000);
+      } else {
+        setStatus("Failed to subscribe.");
+      }
+    } catch (err) {
+      setStatus("Error.");
+    }
+  };
   return (
     <footer className="bg-[#0b1811] text-white/70 pt-20 pb-10 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6">
@@ -760,16 +818,15 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-bold uppercase tracking-widest mb-6">Newsletter</h4>
             <p className="text-sm mb-4">Subscribe for the latest travel deals and visa updates.</p>
-            <form className="flex" onSubmit={(e) => e.preventDefault()}>
+            <form className="flex" onSubmit={handleNewsletterSubmit}>
+              <input type="hidden" name="access_key" value="b4fd8a9f-46a9-47ee-ac16-8e861f588163" />
+              <input type="hidden" name="subject" value="New Newsletter Subscription - Skytrails" />
+              <input type="hidden" name="from_name" value="Skytrails Website" />
               <input type="email" autoComplete="email" placeholder="Your Email" className="bg-white/10 text-white px-4 py-3 rounded-l-md w-full focus:outline-none focus:bg-white/20 text-sm" required />
               <button type="submit" className="bg-[#d48217] hover:bg-[#b56e13] px-4 py-3 rounded-r-md transition-colors">
                 <ChevronRight className="w-5 h-5 text-white" />
               </button>
-            </form>
-          </div>
-        </div>
-        
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+            </form>            {status && <p className="text-sm font-bold mt-2 text-[#d48217]">{status}</p>}          </div>        </div>                <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
           <p>&copy; {new Date().getFullYear()} Skytrails International Kenya. All rights reserved.</p>
           <div className="flex gap-4">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
