@@ -220,7 +220,7 @@ const Hero = () => {
 
       {/* Booking Widget */}
       <div id="booking-widget" className="absolute bottom-0 w-full z-20 translate-y-1/2 px-4 sm:px-6">
-        <form onSubmit={handleSubmit} className="max-w-4xl mx-auto bg-white rounded-lg shadow-2xl p-4 sm:p-6 flex flex-col md:flex-row gap-4 relative">
+        <form onSubmit={handleSubmit} autoComplete="off" className="max-w-4xl mx-auto bg-white rounded-lg shadow-2xl p-4 sm:p-6 flex flex-col md:flex-row gap-4 relative">
           <div className="flex-1">
             <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Destination</label>
             <div className="flex items-center gap-2 text-[#1a3626] border-b border-gray-200 pb-2 relative">
@@ -664,20 +664,23 @@ const ContactSection = () => {
           <div className="bg-[#1a3626] p-8 md:p-10 rounded-2xl text-white shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
             <h3 className="text-2xl font-display font-bold mb-6">Send Us a Message</h3>
-            <form className="space-y-4 relative z-10" action="mailto:info@skytrailsinternational.com" method="POST" encType="text/plain">
+            <form className="space-y-4 relative z-10" action="https://api.web3forms.com/submit" method="POST">
+              <input type="hidden" name="access_key" value="b4fd8a9f-46a9-47ee-ac16-8e861f588163" />
+              <input type="hidden" name="subject" value="New Contact Form Submission - Skytrails" />
+              <input type="hidden" name="from_name" value="Skytrails Website" />
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-widest text-white/70 mb-2">First Name</label>
-                  <input type="text" name="First Name" className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-[#d48217] transition-colors" required />
+                  <input type="text" name="First Name" autoComplete="given-name" className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-[#d48217] transition-colors" required />
                 </div>
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-widest text-white/70 mb-2">Last Name</label>
-                  <input type="text" name="Last Name" className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-[#d48217] transition-colors" required />
+                  <input type="text" name="Last Name" autoComplete="family-name" className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-[#d48217] transition-colors" required />
                 </div>
               </div>
               <div>
                 <label className="block text-xs font-bold uppercase tracking-widest text-white/70 mb-2">Email Address</label>
-                <input type="email" name="Email" className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-[#d48217] transition-colors" required />
+                <input type="email" name="Email" autoComplete="email" className="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white focus:outline-none focus:border-[#d48217] transition-colors" required />
               </div>
               <div>
                 <label className="block text-xs font-bold uppercase tracking-widest text-white/70 mb-2">Service Required</label>
@@ -758,7 +761,7 @@ const Footer = () => {
             <h4 className="text-white font-bold uppercase tracking-widest mb-6">Newsletter</h4>
             <p className="text-sm mb-4">Subscribe for the latest travel deals and visa updates.</p>
             <form className="flex" onSubmit={(e) => e.preventDefault()}>
-              <input type="email" placeholder="Your Email" className="bg-white/10 text-white px-4 py-3 rounded-l-md w-full focus:outline-none focus:bg-white/20 text-sm" required />
+              <input type="email" autoComplete="email" placeholder="Your Email" className="bg-white/10 text-white px-4 py-3 rounded-l-md w-full focus:outline-none focus:bg-white/20 text-sm" required />
               <button type="submit" className="bg-[#d48217] hover:bg-[#b56e13] px-4 py-3 rounded-r-md transition-colors">
                 <ChevronRight className="w-5 h-5 text-white" />
               </button>
